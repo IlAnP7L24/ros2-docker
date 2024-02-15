@@ -2,9 +2,9 @@
 FROM ros:humble
 #LABEL maintainer =""
 
-RUN useradd --create-home --home-dir /home/ubuntu --shell /bin/bash --user-group --groups adm,sudo ubuntu && \
-    echo ubuntu:ubuntu | chpasswd && \
-    echo "ubuntu ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN useradd --create-home --home-dir /home/ros --shell /bin/bash --user-group --groups adm,sudo ros && \
+    echo ros:ros | chpasswd && \
+    echo "ros ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 RUN apt update && \
     apt install -y --no-install-recommends python3-pip python3-apt && \
@@ -17,4 +17,7 @@ RUN apt update && apt install -y curl
 RUN curl http://repo.ros2.org/repos.key | sudo apt-key add -
 RUN curl http://packages.osrfoundation.org/gazebo.key | sudo apt-key add -
 
-ENV USER ubuntu
+ARG WORKSPACE
+RUN echo "if [ -f ${WORKSPACE}/install/setup.bash ]; then source ${WORKSPACE}/install/setup.bash; fi" >> /home/ros/.bashrc
+
+ENV USER ros
