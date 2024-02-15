@@ -76,7 +76,7 @@ function run () {
   fi
 }
 
-#eos-docker [options -i, -g] workspace launch [argument ros2 launch]
+#ros-docker [options -i, -g] workspace launch [argument ros2 launch]
 function launch () {
   args="$*"
   if [[ -n "${GUI}" ]];then
