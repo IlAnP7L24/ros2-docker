@@ -16,12 +16,12 @@ You can develop ros2 application without native ros2 environment. This is suppor
 Do don't need install. only build docker image for ros2.
 
 ```
-$git clone https://github.com/masato-ka/ros2-docker.git
-$cd ros2-docker/app_build_container
-$docker build -t <Own image name> .
-$cd ../
-$sudo chmod +x ros2-docker.sh
-$export PATH=$PATH:$PWD/ros2-docker.sh
+git clone https://github.com/masato-ka/ros2-docker.git
+cd ros2-docker/app_build_container
+docker build -t <Own image name> .
+cd ../
+sudo chmod +x ros2-docker.sh
+export PATH=$PATH:$PWD/ros2-docker
 ```
 
 ## 4. Usage
@@ -55,35 +55,35 @@ $export PATH=$PATH:$PWD/ros2-docker.sh
 * 1.Running ROS2 tutorial [Trying dummy robot demo](https://index.ros.org/doc/ros2/Tutorials/dummy-robot-demo/).
 
 ```
-$mkdir -p ros_ws/src
-$git clone clone https://github.com/ros2/demos.git　./ros_ws/src
-$cd ros_ws/src/demo && git checkout foxy
-$cd ../../
-$ros2-docker.sh -o ros2-sample-image:latest ros_ws rosdep install --from-paths src --ignore-src -r -y
-$ros2-docker.sh -i ros2-sample-image ros_ws build
-$ros2-docker.sh ros_ws launch dummy_robot_bringup dummy_robot_bringup.launch.py
+mkdir -p ros_ws/src
+git clone clone https://github.com/ros2/demos.git　./ros_ws/src
+cd ros_ws/src/demo && git checkout foxy
+cd ../../
+ros2-docker.sh -o ros2-sample-image:latest ros_ws rosdep install --from-paths src --ignore-src -r -y
+ros2-docker.sh -i ros2-sample-image ros_ws build
+ros2-docker.sh ros_ws launch dummy_robot_bringup dummy_robot_bringup.launch.py
 ## Other terminal
-$ros2-docker.sh ros_ws rviz
+ros2-docker.sh ros_ws rviz
 
 ## You can see rviz by VNC (localhost:5900).
 ```
 
 * 2.[Moveit2 build and demo run](https://moveit.ros.org/install-moveit2/source/)
 ```
-$mkdir -p moveit_ws/src
-$curl wget https://raw.githubusercontent.com/ros-planning/moveit2/main/moveit2.repos -o moveit_ws/.rosintall
-$ros2-docker moveit_ws vcs
+mkdir -p moveit_ws/src
+curl wget https://raw.githubusercontent.com/ros-planning/moveit2/main/moveit2.repos -o moveit_ws/.rosintall
+ros2-docker moveit_ws vcs
 ## Attention: You need all download directory move to src folder manually.
 
 ## rosdep subcommand create new docker image that is resolve dependencies for moveit. 
-$ros2-docker -t moveit_depends_image moveit_ws rosdep install -r --from-paths . --ignore-src --rosdistro foxy -y
+ros2-docker -t moveit_depends_image moveit_ws rosdep install -r --from-paths . --ignore-src --rosdistro foxy -y
 
 ## Take many time for build.
 ## Attention: Builded pkg is not contain in docker image. Therefor if you need moveit for your own pkg, create new docker image manually.
-$ros2-docker -i moveit_depends_image moveit_ws build --event-handlers desktop_notification- status- --cmake-args -DCMAKE_BUILD_TYPE=Release
+ros2-docker -i moveit_depends_image moveit_ws build --event-handlers desktop_notification- status- --cmake-args -DCMAKE_BUILD_TYPE=Release
  
 ## You 
-$ros20docker -i moveit_depends_image -g ros2 launch run_moveit_cpp run_moveit_cpp.launch.py
+ros20docker -i moveit_depends_image -g ros2 launch run_moveit_cpp run_moveit_cpp.launch.py
 ## You can see rviz by VNC (localhost:5900).
 ```
 
@@ -100,8 +100,8 @@ Then change to 0 Window Geometry X and Y.
 Execute ros2 create commmand to workspace/src directory.
 
 ```
-$mkdir -p workspace/src
-$ros2-docker.sh workspace create <pkg_name> --build-type ament_cmake --node-name own_node
+mkdir -p workspace/src
+ros2-docker.sh workspace create <pkg_name> --build-type ament_cmake --node-name own_node
 ```
 
 ### Build package
@@ -109,7 +109,7 @@ $ros2-docker.sh workspace create <pkg_name> --build-type ament_cmake --node-name
 Execute ros2 build command to workspace.
 
 ```
-$ros2-docker.sh workspace build
+ros2-docker.sh workspace build
 ```
 
 ### Run node
@@ -117,13 +117,13 @@ $ros2-docker.sh workspace build
 Execute ros2 run command to run your own node.
 
 ```
-$ros2-docker.sh workspace run <pkg_name> <node_name>
+ros2-docker.sh workspace run <pkg_name> <node_name>
 ```
 
 If your own node need X display.
 
 ```
-$ros2-docker -g workspace run <pkg_name> <node_name>
+ros2-docker -g workspace run <pkg_name> <node_name>
 ```
 After connect localhost:5900 by VNC tool(macOS recommend Tiger VNC.)
 
@@ -132,13 +132,13 @@ After connect localhost:5900 by VNC tool(macOS recommend Tiger VNC.)
 Execute ros2 launch command to run your own launch file.
 
 ```
-$ros2-docker.sh workspace launch <pkg_name> <launch file>
+ros2-docker.sh workspace launch <pkg_name> <launch file>
 ```
 
 If you contain gui application in your launch file.
 
 ```
-$ros2-docker.sh -g workspace launch <pkg_name> <node_name>
+ros2-docker.sh -g workspace launch <pkg_name> <node_name>
 ```
 
 After connect localhost:5900 by VNC tool(macOS recommend Tiger VNC.)
@@ -149,7 +149,7 @@ Execute the rviz command to run the rviz GUI, which will be drawn on a
 virtual buffer in X Window and served outside the container via VNC from port 5900.
 
 ```
-$ros2-docker.sh workspace rviz
+ros2-docker.sh workspace rviz
 ```
 After connect localhost:5900 by VNC tool(macOS recommend Tiger VNC.)
 
@@ -159,7 +159,7 @@ Execute the gazebo command to run the gazebo GUI, which will be drawn on a
 virtual buffer in X Window and served outside the container via VNC from port 5900.
 
 ```
-$ros2-docker.sh workspace gazebo
+ros2-docker.sh workspace gazebo
 ```
 After connect localhost:5900 by VNC tool(macOS recommend Tiger VNC.)
 
@@ -170,7 +170,7 @@ The current version will only process .rosinstall files under the workspace.
 
 ```
 .rosinstall if it exists directly under the workspace
-$ros2-docker.sh workspace vcs
+ros2-docker.sh workspace vcs
 ```
 
 ## rosdep 
@@ -179,7 +179,7 @@ Run the rosdep command under the workspace to resolve the dependency.
 Create a new Docker image containing the resolved dependencies with the name specified by -o.
 
 ```
-$ros2-docker.sh -o <new docker image name> <workspacename> \
+ros2-docker.sh -o <new docker image name> <workspacename> \
 rosdep install -r --from-paths . --ignore-src --rosdistro foxy -y 
 ```
 
