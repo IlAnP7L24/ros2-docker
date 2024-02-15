@@ -59,7 +59,7 @@ mkdir -p ros_ws/src
 git clone https://github.com/ros2/demos ./ros_ws/src
 cd ros_ws/src && git checkout humble
 cd ../
-ros2-docker.sh -o <docker image name>:<corresponding container name> ros_ws rosdep install --from-paths src --ignore-src -r -y
+ros2-docker.sh -i <docker image name>:<corresponding container name> ros_ws rosdep install --from-paths src --ignore-src -r -y
 ros2-docker.sh -i <docker image name> ros_ws build
 ros2-docker.sh ros_ws launch dummy_robot_bringup dummy_robot_bringup.launch.py
 ## Other terminal
