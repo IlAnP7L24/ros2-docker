@@ -2,7 +2,7 @@
 
 ## 1. Overview
 This project is an unofficial project. This specific fork from the [original](https://github.com/masato-ka/ros2-docker) is a version for ROS2 Humble.
-You can develop a ros2 application without anu native ros2 environment. This is a support script for easily ROS2+Docker development.
+This is a support script for easily ROS2+Docker development, so you can develop a ROS2 application without any native ROS2 environment. 
 
 ![demo](contents/ros2-docker-demo.gif)
 
