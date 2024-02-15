@@ -1,8 +1,8 @@
 # ros2-docker
 
 ## 1. Overview
-This project is unofficial project. 
-You can develop ros2 application without native ros2 environment. This is support script for easily ros2 with docker development.
+This project is an unofficial project. This specific fork from the [original](https://github.com/masato-ka/ros2-docker) is a version for ROS2 Humble.
+You can develop a ros2 application without anu native ros2 environment. This is a support script for easily ROS2+Docker development.
 
 ![demo](contents/ros2-docker-demo.gif)
 
@@ -13,12 +13,12 @@ You can develop ros2 application without native ros2 environment. This is suppor
 
 ## 3. Install
 
-Do don't need install. only build docker image for ros2.
+Install isn't needed. Just build a docker image for ros2:
 
 ```
-git clone https://github.com/masato-ka/ros2-docker.git
+git clone https://github.com/IlAnP7L24/ros2-docker
 cd ros2-docker/app_build_container
-docker build -t <Own image name> .
+docker build -t <Own docker image name> .
 cd ../
 sudo chmod +x ros2-docker.sh
 export PATH=$PATH:$PWD/ros2-docker
@@ -56,8 +56,8 @@ export PATH=$PATH:$PWD/ros2-docker
 
 ```
 mkdir -p ros_ws/src
-git clone clone https://github.com/ros2/demos.git　./ros_ws/src
-cd ros_ws/src/demo && git checkout foxy
+git clone https://github.com/ros2/demos.git　./ros_ws/src
+cd ros_ws/src/demo && git checkout humble
 cd ../../
 ros2-docker.sh -o ros2-sample-image:latest ros_ws rosdep install --from-paths src --ignore-src -r -y
 ros2-docker.sh -i ros2-sample-image ros_ws build
@@ -76,7 +76,7 @@ ros2-docker moveit_ws vcs
 ## Attention: You need all download directory move to src folder manually.
 
 ## rosdep subcommand create new docker image that is resolve dependencies for moveit. 
-ros2-docker -t moveit_depends_image moveit_ws rosdep install -r --from-paths . --ignore-src --rosdistro foxy -y
+ros2-docker -t moveit_depends_image moveit_ws rosdep install -r --from-paths . --ignore-src --rosdistro humble -y
 
 ## Take many time for build.
 ## Attention: Builded pkg is not contain in docker image. Therefor if you need moveit for your own pkg, create new docker image manually.
@@ -151,7 +151,7 @@ virtual buffer in X Window and served outside the container via VNC from port 59
 ```
 ros2-docker.sh workspace rviz
 ```
-After connect localhost:5900 by VNC tool(macOS recommend Tiger VNC.)
+After connect localhost:5900 by VNC tool (macOS recommend Tiger VNC.)
 
 ## Gazebo
 
@@ -161,7 +161,7 @@ virtual buffer in X Window and served outside the container via VNC from port 59
 ```
 ros2-docker.sh workspace gazebo
 ```
-After connect localhost:5900 by VNC tool(macOS recommend Tiger VNC.)
+Connect to localhost:5900 through a VNC tool (Tiger VNC is recommended for macOS)
 
 ## vcs import
 
@@ -180,7 +180,7 @@ Create a new Docker image containing the resolved dependencies with the name spe
 
 ```
 ros2-docker.sh -o <new docker image name> <workspacename> \
-rosdep install -r --from-paths . --ignore-src --rosdistro foxy -y 
+rosdep install -r --from-paths . --ignore-src --rosdistro humble -y 
 ```
 
 ## 5. Release note
