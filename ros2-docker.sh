@@ -1,6 +1,6 @@
 #!/bin/bash
 DOCKER_IMAGE="os3r2gv1/ros:humble"
-DOCKER_IMAGE_HOME="/home"
+DOCKER_IMAGE_HOME="/home/ubuntu"
 DOCKER_COMMAND="docker run --rm"
 
 
