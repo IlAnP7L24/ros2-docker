@@ -18,7 +18,7 @@ Install isn't needed. Just build a docker image for ros2:
 ```
 git clone https://github.com/IlAnP7L24/ros2-docker
 cd ros2-docker/app_build_container
-docker build -t <Own docker image name> .
+docker build -t <Own docker image name that matches pre-"/" DOCKER_IMAGE name in ros2-docker.sh> .
 cd ../
 sudo chmod +x ros2-docker.sh
 export PATH=$PATH:$PWD/ros2-docker
