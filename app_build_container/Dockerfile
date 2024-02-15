@@ -2,7 +2,7 @@
 FROM ros:humble
 #LABEL maintainer =""
 
-RUN useradd --create-home --home-dir /home --shell /bin/bash --user-group --groups adm,sudo ubuntu && \
+RUN useradd --create-home --home-dir /home/ubuntu --shell /bin/bash --user-group --groups adm,sudo ubuntu && \
     echo ubuntu:ubuntu | chpasswd && \
     echo "ubuntu ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
