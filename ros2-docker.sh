@@ -1,6 +1,6 @@
 #!/bin/bash
-DOCKER_IMAGE="masato-ka/ros:foxy"
-DOCKER_IMAGE_HOME="/home/ubuntu"
+DOCKER_IMAGE="os3r2gv1/ros:humble"
+DOCKER_IMAGE_HOME="/home"
 DOCKER_COMMAND="docker run --rm"
 
 
@@ -116,7 +116,7 @@ function rviz () {
     args="$*"
     $DOCKER_COMMAND -p 5900:5900 -v $PWD/$WORKSPACE_NAME:$DOCKER_IMAGE_HOME/$WORKSPACE_NAME $DOCKER_IMAGE /bin/bash -c \
     "cd ${DOCKER_IMAGE_HOME}/${WORKSPACE_NAME} &&\
-     export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/opt/ros/foxy/ &&\
+     export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/opt/ros/humble/ &&\
      (xvfb-run --auth-file /tmp/xvfb-run -- rviz2 ${args}) & \
      x11vnc -display :99 -auth /tmp/xvfb-run"
 }
