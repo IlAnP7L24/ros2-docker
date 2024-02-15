@@ -12,7 +12,7 @@ RUN apt update && \
     apt install -y --no-install-recommends xvfb x11vnc x11-apps && \
     pip3 install -U setuptools colcon-common-extensions colcon-ros-bundle && \
     rm -rf /var/lib/apt/lists/*
-RUN echo '/opt/ros/humble/lib/python3.8/site-packages' > /usr/local/lib/python3.8/dist-packages
+RUN echo '/opt/ros/humble/lib/python3.8/site-packages' > /usr/local/lib/python3.8/dist-packages/.pth
 RUN apt update && apt install -y curl
 RUN curl http://repo.ros2.org/repos.key | sudo apt-key add -
 RUN curl http://packages.osrfoundation.org/gazebo.key | sudo apt-key add -
