@@ -21,7 +21,7 @@ cd ros2-docker/app_build_container
 docker build -t <Own docker image name that matches pre-"/" DOCKER_IMAGE name in ros2-docker.sh> .
 cd ../
 sudo chmod +x ros2-docker.sh
-export PATH=$PATH:$PWD/ros2-docker
+export PATH=$PATH:~/git/ros2-docker
 ```
 
 ## 4. Usage
@@ -56,7 +56,7 @@ export PATH=$PATH:$PWD/ros2-docker
 
 ```
 mkdir -p ros_ws/src
-git clone https://github.com/ros2/demos.git　./ros_ws/src
+git clone https://github.com/ros2/demos　./ros_ws/src
 cd ros_ws/src/demo && git checkout humble
 cd ../../
 ros2-docker.sh -o ros2-sample-image:latest ros_ws rosdep install --from-paths src --ignore-src -r -y
