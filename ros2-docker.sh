@@ -1,5 +1,5 @@
 #!/bin/bash
-DOCKER_IMAGE="os3r2gv1"
+DOCKER_IMAGE="r2v1"
 DOCKER_IMAGE_HOME="/home/ros"
 DOCKER_COMMAND="docker run --rm"
 
