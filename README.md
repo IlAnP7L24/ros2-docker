@@ -56,7 +56,7 @@ export PATH=$PATH:~/git/ros2-docker
 
 ```
 mkdir -p ros_ws/src
-git clone https://github.com/ros2/demos　./ros_ws/src
+git clone https://github.com/ros2/demos ./ros_ws/src
 cd ros_ws/src/demo && git checkout humble
 cd ../../
 ros2-docker.sh -o ros2-sample-image:latest ros_ws rosdep install --from-paths src --ignore-src -r -y
