@@ -1,5 +1,5 @@
 #!/bin/bash
-DOCKER_IMAGE="r2v1/ros:humble"
+DOCKER_IMAGE="r21/ros:humble"
 DOCKER_IMAGE_HOME="/home/ubuntu"
 DOCKER_COMMAND="docker run --rm"
 
