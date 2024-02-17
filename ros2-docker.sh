@@ -1,5 +1,6 @@
 #!/bin/bash
-DOCKER_IMAGE="r21/ros:humble"
+#DOCKER_IMAGE="r21/ros:humble"
+DOCKER_IMAGE=$(docker ps --format '{{.Image}}' -f status=running | head -n 1)
 DOCKER_IMAGE_HOME="/home/ubuntu"
 DOCKER_COMMAND="docker run --rm"
 
