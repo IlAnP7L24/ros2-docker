@@ -83,7 +83,7 @@ ros2-docker -t moveit_depends_image moveit_ws rosdep install -r --from-paths . -
 ros2-docker -i moveit_depends_image moveit_ws build --event-handlers desktop_notification- status- --cmake-args -DCMAKE_BUILD_TYPE=Release
  
 ## You 
-ros20docker -i moveit_depends_image -g ros2 launch run_moveit_cpp run_moveit_cpp.launch.py
+ros2-docker -i moveit_depends_image -g ros2 launch run_moveit_cpp run_moveit_cpp.launch.py
 ## You can see rviz by VNC (localhost:5900).
 ```
 
